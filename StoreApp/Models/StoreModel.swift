@@ -10,11 +10,15 @@ import Foundation
 @MainActor
 class StoreModel: ObservableObject {
     
-    @Published var categories: [Category] = []
+    @Published private(set) var categories: [Category] = []
+    @Published private(set) var products: [Product] = []
     let client = HTTPClient()
     
     func fetchCategories() async throws {
         categories = try await client.getCategories(url:  URL.categories)
-        
+    }
+    
+    func fetchProductsByCategory(_ categoryID: Int) async throws {
+        products = try await  client.getProductsByCategory(url: URL.productsByCategory(categoryID))
     }
 }

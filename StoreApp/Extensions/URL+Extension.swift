@@ -28,4 +28,7 @@ extension URL {
         URL(string: "/api/v1/categories", relativeTo: Self.default)!
     }
     
+    static func productsByCategory(_ categooryID: Int) -> URL {
+        return URL(string: "/api/v1/categories/\(categooryID)/products&limit=20", relativeTo: Self.default)!
+    }
 }
