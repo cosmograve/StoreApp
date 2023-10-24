@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B04C01E32AE7F24D008B99C0 /* ProductCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04C01E22AE7F24D008B99C0 /* ProductCellView.swift */; };
 		B07BA6352AE43F3800848F60 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07BA6342AE43F3800848F60 /* ProductModel.swift */; };
 		B07BA6372AE4434400848F60 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07BA6362AE4434400848F60 /* ProductView.swift */; };
 		B090F05A2AE02F5200E4BF87 /* StoreAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B090F0592AE02F5200E4BF87 /* StoreAppApp.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B04C01E22AE7F24D008B99C0 /* ProductCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellView.swift; sourceTree = "<group>"; };
 		B07BA6342AE43F3800848F60 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		B07BA6362AE4434400848F60 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
 		B090F0562AE02F5200E4BF87 /* StoreApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +46,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B04C01E12AE7F23E008B99C0 /* Sub */ = {
+			isa = PBXGroup;
+			children = (
+				B04C01E22AE7F24D008B99C0 /* ProductCellView.swift */,
+			);
+			path = Sub;
+			sourceTree = "<group>";
+		};
 		B07BA62F2AE4398B00848F60 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -56,8 +66,8 @@
 			isa = PBXGroup;
 			children = (
 				B090F06B2AE0342400E4BF87 /* CategoryModel.swift */,
-				B090F06D2AE037A500E4BF87 /* StoreModel.swift */,
 				B07BA6342AE43F3800848F60 /* ProductModel.swift */,
+				B090F06D2AE037A500E4BF87 /* StoreModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -73,6 +83,7 @@
 		B07BA6322AE439F700848F60 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B04C01E12AE7F23E008B99C0 /* Sub */,
 				B090F06F2AE03A0800E4BF87 /* CategotyView.swift */,
 				B07BA6362AE4434400848F60 /* ProductView.swift */,
 			);
@@ -196,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B07BA6372AE4434400848F60 /* ProductView.swift in Sources */,
+				B04C01E32AE7F24D008B99C0 /* ProductCellView.swift in Sources */,
 				B090F05A2AE02F5200E4BF87 /* StoreAppApp.swift in Sources */,
 				B090F0702AE03A0800E4BF87 /* CategotyView.swift in Sources */,
 				B090F06A2AE0334E00E4BF87 /* HTTPClient.swift in Sources */,

@@ -15,26 +15,58 @@ enum NetworkError: Error {
     case invalidURL
 }
 
-class HTTPClient {
-    func getCategories(url: URL) async throws -> [Category] {
-        let (data, response) = try await URLSession.shared.data(from: url)
-        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-            throw NetworkError.invalidResponse
-        }
-        guard let categories = try? JSONDecoder().decode([Category].self, from: data) else {
-            throw NetworkError.decodingError
-        }
-        return categories
-    }
+enum HTTPMethod {
+    case get([URLQueryItem])
+    case post(Data?)
+    case delete
     
-    func getProductsByCategory(url: URL) async throws -> [Product] {
-        let (data, response) = try await URLSession.shared.data(from: url)
-        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+    var name: String {
+        switch self {
+            case .get: "GET"
+            case .post: "POST"
+            case .delete: "DELETE"
+        }
+    }
+}
+
+struct Resource<T: Codable> {
+    let url: URL
+    var headers: [String: String] = [:]
+    var method: HTTPMethod = .get([])
+}
+
+class HTTPClient {
+    
+    func load<T: Codable>(_ resource: Resource<T>) async throws -> T {
+        var request = URLRequest(url: resource.url)
+        request.allHTTPHeaderFields = resource.headers
+        request.httpMethod = resource.method.name
+        
+        switch resource.method {
+        case .get(let queryItems ):
+            var components = URLComponents(url: resource.url, resolvingAgainstBaseURL: true)
+            components?.queryItems = queryItems
+            guard let url = components?.url else { throw NetworkError.badURl }
+            request.url = url
+        case .post(_):
+            break
+        case .delete:
+            break
+        }
+        
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = ["Content-Type": "application/json"]
+        
+        let session = URLSession(configuration: configuration)
+        
+        let (data, response) = try await session.data(for: request)
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 || response.statusCode == 201  else {
             throw NetworkError.invalidResponse
         }
-        guard let products = try? JSONDecoder().decode([Product].self, from: data) else {
+        guard let object = try? JSONDecoder().decode(T.self, from: data) else {
             throw NetworkError.decodingError
         }
-        return products
+        return object
+        
     }
 }

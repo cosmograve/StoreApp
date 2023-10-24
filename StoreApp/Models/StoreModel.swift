@@ -15,10 +15,10 @@ class StoreModel: ObservableObject {
     let client = HTTPClient()
     
     func fetchCategories() async throws {
-        categories = try await client.getCategories(url:  URL.categories)
+        categories = try await client.load(Resource(url: URL.categories))
     }
     
     func fetchProductsByCategory(_ categoryID: Int) async throws {
-        products = try await  client.getProductsByCategory(url: URL.productsByCategory(categoryID))
+        products = try await  client.load(Resource(url: URL.productsByCategory(categoryID)))
     }
 }

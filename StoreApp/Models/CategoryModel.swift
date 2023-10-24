@@ -12,3 +12,9 @@ struct Category: Codable, Hashable {
     var name: String
     var image: URL
 }
+
+extension Category {
+    static var preview: Category {
+        Category(id: 3, name: "Change title", image: URL(string: "https://api.lorem.space/image/furniture?w=640&h=480&r=7358")!)
+    }
+}
